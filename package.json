@@ -1,8 +1,20 @@
 {
   "name": "tauri-plugin-audio-recorder-android-api",
   "version": "0.1.0",
-  "author": "You",
-  "description": "",
+  "author": "Mehmet Uysal",
+  "license": "MIT",
+  "description": "High-performance background audio recording plugin for Tauri 2.0 Android apps with Foreground Service and real-time amplitude support.",
+  "keywords": [
+    "tauri",
+    "tauri-plugin",
+    "android",
+    "audio-recorder",
+    "foreground-service",
+    "background-recording",
+    "amplitude",
+    "kotlin",
+    "rust"
+  ],
   "type": "module",
   "types": "./dist-js/index.d.ts",
   "main": "./dist-js/index.cjs",
@@ -29,5 +41,13 @@
     "rollup": "^4.9.6",
     "typescript": "^6.0.0",
     "tslib": "^2.6.2"
+  },
+  "homepage": "https://github.com/HMUysal/tauri-plugin-audio-recorder-android#readme",
+  "bugs": {
+    "url": "https://github.com/HMUysal/tauri-plugin-audio-recorder-android/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HMUysal/tauri-plugin-audio-recorder-android.git"
   }
 }
