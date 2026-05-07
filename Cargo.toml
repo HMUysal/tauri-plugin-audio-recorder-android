@@ -1,8 +1,12 @@
 [package]
 name = "tauri-plugin-audio-recorder-android"
 version = "0.1.0"
-authors = [ "You" ]
-description = ""
+authors = [ "Mehmet Uysal" ]
+description = "High-performance background audio recording plugin for Tauri 2.0 Android apps with Foreground Service and real-time amplitude support."
+homepage = "https://github.com/HMUysal/tauri-plugin-audio-recorder-android"
+repository = "https://github.com/HMUysal/tauri-plugin-audio-recorder-android"
+license = "MIT"
+keywords = ["tauri","tauri-plugin","android","audio-recorder","foreground-service","background-recording","amplitude","kotlin","rust"]
 edition = "2021"
 rust-version = "1.77.2"
 exclude = ["/examples", "/dist-js", "/guest-js", "/node_modules"]
