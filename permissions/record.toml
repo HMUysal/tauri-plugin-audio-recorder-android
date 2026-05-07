@@ -1,0 +1,11 @@
+"$schema" = "schemas/schema.json"
+
+[[permission]]
+identifier = "allow-record"
+description = "Enables the record command."
+commands.allow = ["record"]
+
+[[permission]]
+identifier = "deny-record"
+description = "Denies the record command."
+commands.deny = ["record"]

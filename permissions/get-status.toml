@@ -1,0 +1,11 @@
+"$schema" = "schemas/schema.json"
+
+[[permission]]
+identifier = "allow-get-status"
+description = "Enables the get_status command."
+commands.allow = ["get_status"]
+
+[[permission]]
+identifier = "deny-get-status"
+description = "Denies the get_status command."
+commands.deny = ["get_status"]

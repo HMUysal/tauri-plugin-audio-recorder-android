@@ -1,0 +1,11 @@
+"$schema" = "schemas/schema.json"
+
+[[permission]]
+identifier = "allow-resume"
+description = "Enables the resume command."
+commands.allow = ["resume"]
+
+[[permission]]
+identifier = "deny-resume"
+description = "Denies the resume command."
+commands.deny = ["resume"]

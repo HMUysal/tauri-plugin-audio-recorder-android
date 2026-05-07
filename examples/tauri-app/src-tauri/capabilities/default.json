@@ -1,0 +1,11 @@
+{
+  "$schema": "../gen/schemas/android-schema.json",
+  "identifier": "default",
+  "description": "enables the default permissions",
+  "windows": ["main"],
+  "permissions": [
+    "core:default",
+    "audio-recorder-android:default",
+    "core:path:default"
+  ]
+}
