@@ -1,5 +1,11 @@
 import { invoke } from "@tauri-apps/api/core";
 
+export enum AudioQuality {
+  LOW = 0,
+  STANDARD = 1,
+  HIGH = 2,
+}
+
 /**
  * Android MediaRecorder OutputFormat constants.
  * These match the integer values defined in android.media.MediaRecorder.OutputFormat.
@@ -41,6 +47,9 @@ export interface RecordRequest {
   format?: OutputFormat;
   /** The audio encoder (Use AudioEncoder enum). Defaults to AAC. */
   encoder?: AudioEncoder;
+  bitRate?: number;
+  sampleRate?: number;
+  channels?: number;
 }
 
 /**

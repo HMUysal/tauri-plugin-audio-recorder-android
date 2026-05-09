@@ -6,6 +6,9 @@ pub struct RecordRequest {
     pub file_name: String,
     pub format: Option<i32>,
     pub encoder: Option<i32>,
+    pub bit_rate: Option<i32>,
+    pub sample_rate: Option<i32>,
+    pub channels: Option<i32>,
 }
 
 #[derive(Debug, Deserialize, Serialize)]
@@ -26,6 +29,13 @@ pub struct RecorderStatusResponse {
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GenericResponse {
+    pub success: bool,
+    pub message: Option<String>,
+}
+
+#[derive(Debug, Clone, Default, Deserialize, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PermissionResponse {
     pub success: bool,
     pub message: Option<String>,
     pub is_granted: Option<bool>,

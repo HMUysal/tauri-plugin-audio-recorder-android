@@ -21,6 +21,9 @@
   let amplitude = $state(0);
   let intervalId = $state<any>(null);
   let lastRecordedPath = $state<string | null>(null);
+  let bitRate = $state(128000);
+  let sampleRate = $state(44100);
+  let channels = $state(1);
   
   // Playback States
   let isPlaying = $state(false);
@@ -47,7 +50,10 @@
       const res = await record({
         fileName: fullPath,
         format: OutputFormat.MPEG_4,
-        encoder: AudioEncoder.AAC
+        encoder: AudioEncoder.AAC,
+        bitRate,
+        sampleRate,
+        channels
       });
       
       addLog("Start Record", res);
@@ -163,8 +169,6 @@ async function handleClearLogs() {
 </script>
 
 <main class="container">
-  <h1>Recorder Pro Lab</h1>
-
   <div class="visualizer">
     <div class="bar" style="height: {visualizerHeight}%"></div>
     <p class={isRecording ? 'recording' : ''}>
@@ -173,6 +177,20 @@ async function handleClearLogs() {
   </div>
 
   <div class="controls">
+    <div class="group">
+    <label for="">
+      <span>Bitrate</span>
+      <input type="number" value={bitRate}>
+    </label>
+    <label for="">
+      <span>SampleRate</span>
+      <input type="number" value={sampleRate}>
+    </label>
+    <label for="">
+      <span>Channels</span>
+      <input type="number" value={channels}>
+    </label>
+    </div>
     <div class="group">
       <button onclick={handleCheck}>Check</button>
       <button onclick={handleRequest}>Request</button>
@@ -284,4 +302,50 @@ async function handleClearLogs() {
   code { color: #00ff88; word-break: break-all; }
 
   @keyframes blink { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
+
+  .group {
+  display: flex;
+  gap: 12px; /* Elemanlar arası boşluğu biraz açtık */
+  margin-bottom: 15px;
+}
+
+.group label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+  font-size: 12px;
+  color: #888; /* Yazı rengini biraz soft yaptık */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.group input {
+  width: 100%;
+  padding: 10px 12px;
+  background: #1a1a1a; /* Arka plandan biraz daha açık bir siyah */
+  color: #00ff88; /* Değerler ana aksan renginde */
+  border: 1px solid #333;
+  border-radius: 6px;
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box; /* Padding'in genişliği bozmasını engeller */
+}
+
+.group input:focus {
+  border-color: #00ff88;
+  background: #222;
+  box-shadow: 0 0 8px rgba(0, 255, 136, 0.2);
+}
+
+/* Number input yanındaki okları (spinners) temizlemek istersen (isteğe bağlı) */
+.group input::-webkit-inner-spin-button,
+.group input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 </style>

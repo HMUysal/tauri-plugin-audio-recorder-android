@@ -7,14 +7,14 @@ use crate::AudioRecorderAndroidExt;
 #[command]
 pub(crate) async fn check_permission<R: Runtime>(
     app: AppHandle<R>,
-) -> Result<GenericResponse> {
+) -> Result<PermissionResponse> {
     app.audio_recorder_android().check_permission()
 }
 
 #[command]
 pub(crate) async fn request_permission<R: Runtime>(
     app: AppHandle<R>,
-) -> Result<GenericResponse> {
+) -> Result<PermissionResponse> {
     app.audio_recorder_android().request_permission()
 }
 

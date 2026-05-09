@@ -28,12 +28,15 @@ class AudioRecorderAndroid {
             mapOf("success" to true, "message" to "Already granted", "isGranted" to true)
         }
     }
-    fun record(context: Context, fileName: String, format: Int, encoder: Int): Map<String, Any?> {
+    fun record(context: Context, fileName: String, format: Int, encoder: Int, bitRate:Int, sampleRate:Int, channels:Int): Map<String, Any?> {
         val intent = Intent(context, AudioRecordService::class.java).apply {
             action = "START"
             putExtra("fileName", fileName)
             putExtra("format", format)
             putExtra("encoder", encoder)
+            putExtra("bitRate", bitRate)
+            putExtra("sampleRate", sampleRate)
+            putExtra("channels", channels)
         }
 
         return try {

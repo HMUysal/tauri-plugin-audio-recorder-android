@@ -14,8 +14,10 @@ class RecordArgs {
     var fileName: String? = null
     var format: Int? = null
     var encoder: Int? = null
+    var bitRate: Int? = null
+    var sampleRate: Int? = null
+    var channels: Int? = null
 }
-
 @TauriPlugin
 class AudioRecorderAndroidPlugin(private val activity: Activity): Plugin(activity) {
     private val implementation = AudioRecorderAndroid()
@@ -55,8 +57,11 @@ class AudioRecorderAndroidPlugin(private val activity: Activity): Plugin(activit
             val fileName = args.fileName ?: "tmp-record"
             val format = args.format ?: MediaRecorder.OutputFormat.MPEG_4
             val encoder = args.encoder ?: MediaRecorder.AudioEncoder.AAC
+            val bitRate = args.bitRate ?: 128000
+            val sampleRate = args.sampleRate ?: 44100
+            val channels = args.channels ?: 1
 
-            val result = implementation.record(activity, fileName, format, encoder)
+            val result = implementation.record(activity, fileName, format, encoder, bitRate, sampleRate, channels)
             val ret = JSObject()
             result.forEach { (key, value) ->
                 when(value) {

@@ -1,3 +1,19 @@
+export type AudioLowQuality = {
+  bitRate: 32000;
+  samplingRate: 22050;
+  channels: 1;
+};
+export type AudioStandardQuality = {
+  bitRate: 128000;
+  samplingRate: 44100;
+  channels: 1;
+};
+export type AudioHighQuality = {
+  bitRate: 320000;
+  samplingRate: 48000;
+  channels: 2;
+};
+
 export enum OutputFormat {
   DEFAULT = 0,
   THREE_GPP = 1,
@@ -25,6 +41,9 @@ export interface RecordRequest {
   fileName: string;
   format?: OutputFormat;
   encoder?: AudioEncoder;
+  bitRate?: number;
+  sampleRate?: number;
+  channels?: number;
 }
 
 export interface GenericResponse {

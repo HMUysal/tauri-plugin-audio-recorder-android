@@ -51,8 +51,11 @@ class AudioRecordService : Service() {
                 val fileName = intent.getStringExtra("fileName")
                 val format = intent.getIntExtra("format", MediaRecorder.OutputFormat.MPEG_4)
                 val encoder = intent.getIntExtra("encoder", MediaRecorder.AudioEncoder.AAC)
+                val bitRate = intent.getIntExtra("bitRate", 128000)
+                val sampleRate = intent.getIntExtra("sampleRate", 44100)
+                val channels = intent.getIntExtra("channels", 1)
                 Log.d(TAG, "Processing START request - File: $fileName, Format: $format, Encoder: $encoder")
-                startRecording(fileName, format, encoder)
+                startRecording(fileName, format, encoder, bitRate, sampleRate, channels)
             }
             "STOP" -> {
                 Log.d(TAG, "Processing STOP request")
@@ -70,7 +73,7 @@ class AudioRecordService : Service() {
         }
         return START_NOT_STICKY
     }
-    private fun startRecording(fileName: String?, format: Int, encoder: Int) {
+    private fun startRecording(fileName: String?, format: Int, encoder: Int, bitRate:Int, sampleRate: Int, channels: Int) {
         if (isRecording) {
             Log.w(TAG, "startRecording: Already recording, ignoring request.")
             return
@@ -104,6 +107,10 @@ class AudioRecordService : Service() {
                 setOutputFormat(format)
                 setAudioEncoder(encoder)
                 setOutputFile(fileName)
+
+                setAudioEncodingBitRate(bitRate)
+                setAudioSamplingRate(sampleRate)
+                setAudioChannels(channels)
 
                 Log.v(TAG, "MediaRecorder: prepare() starting")
                 prepare()
