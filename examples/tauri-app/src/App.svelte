@@ -12,7 +12,9 @@
     resume, 
     getStatus,
     OutputFormat,
-    AudioEncoder
+    AudioEncoder,
+    checkNotificationPermission,
+requestNotificationPermission
   } from 'tauri-plugin-audio-recorder-android-api';
 
   // --- States (Svelte 5 Runes) ---
@@ -136,6 +138,9 @@
 
   async function handleCheck() { addLog("Check", await checkPermission()); }
   async function handleRequest() { addLog("Request", await requestPermission()); }
+
+  async function handleNotificationCheck() { addLog("Check", await checkNotificationPermission()); }
+  async function handleNotificationRequest() { addLog("Request", await requestNotificationPermission()); }
   async function handlePause() { addLog("Pause", await pause()); }
   async function handleResume() { addLog("Resume", await resume()); }
 
@@ -196,6 +201,10 @@ async function handleClearLogs() {
       <button onclick={handleRequest}>Request</button>
     </div>
 
+    <div class="group">
+      <button onclick={handleNotificationCheck}>Notification Check</button>
+      <button onclick={handleNotificationRequest}>Notification Request</button>
+    </div>
     <div class="group">
       <button onclick={handleRecord} disabled={isRecording} class="start">Start</button>
       <button onclick={handleStop} disabled={!isRecording} class="stop">Stop</button>
