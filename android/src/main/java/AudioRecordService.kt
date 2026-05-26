@@ -215,6 +215,8 @@ class AudioRecordService : Service() {
             .setSmallIcon(android.R.drawable.ic_btn_speak_now)
             .setOngoing(true)
             .setAutoCancel(false)
+            .setSound(null)
+            .setVibrate(null)
             .setContentIntent(pendingIntent)
             .setPriority(NotificationCompat.PRIORITY_MIN)
             .build()
@@ -231,7 +233,10 @@ class AudioRecordService : Service() {
             val serviceChannel = NotificationChannel(
                 CHANNEL_ID, "Audio Recording Service Channel",
                 NotificationManager.IMPORTANCE_HIGH
-            )
+            ).apply {
+                setSound(null, null)
+                enableVibration(false)
+            }
             val manager = getSystemService(NotificationManager::class.java)
             manager?.createNotificationChannel(serviceChannel)
         }
