@@ -101,7 +101,25 @@ export async function requestPermission(): Promise<GenericResponse> {
     "plugin:audio-recorder-android|request_permission",
   );
 }
+/**
+ * Checks if the RECORD_AUDIO permission is granted on the Android device.
+ * @returns A promise resolving to the permission status.
+ */
+export async function checkNotificationPermission(): Promise<GenericResponse> {
+  return await invoke<GenericResponse>(
+    "plugin:audio-recorder-android|check_notification_permission",
+  );
+}
 
+/**
+ * Requests the RECORD_AUDIO permission from the user.
+ * @returns A promise resolving to the result of the permission request.
+ */
+export async function requestNotificationPermission(): Promise<GenericResponse> {
+  return await invoke<GenericResponse>(
+    "plugin:audio-recorder-android|request_notification_permission",
+  );
+}
 /**
  * Starts the foreground recording service.
  * @param payload - Configuration including fileName, format, and encoder.

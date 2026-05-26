@@ -69,7 +69,15 @@ export function checkPermission(): Promise<GenericResponse>;
  * Requests the RECORD_AUDIO permission.
  */
 export function requestPermission(): Promise<GenericResponse>;
+/**
+ * Checks if the RECORD_AUDIO permission is granted.
+ */
+export function checkNotificationPermission(): Promise<GenericResponse>;
 
+/**
+ * Requests the RECORD_AUDIO permission.
+ */
+export function requestNotificationPermission(): Promise<GenericResponse>;
 /**
  * Starts the recording service.
  */

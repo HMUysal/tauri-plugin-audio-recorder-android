@@ -3,9 +3,9 @@
 [[permission]]
 identifier = "allow-request-permission"
 description = "Enables the request_permission command."
-commands.allow = ["request_permission"]
+commands.allow = ["request_permission", "request_notification_permission"]
 
 [[permission]]
 identifier = "deny-request-permission"
 description = "Denies the request_permission command."
-commands.deny = ["request_permission"]
+commands.deny = ["request_permission", "request_notification_permission"]

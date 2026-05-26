@@ -10,7 +10,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 
 private const val PERMISSION_REQUEST_CODE = 1001
-
+const val NOTIFICATION_PERMISSION_CODE = 101
 class AudioRecorderAndroid {
 
     fun checkPermission(context: Context): Map<String, Any?> {
@@ -26,6 +26,28 @@ class AudioRecorderAndroid {
             mapOf("success" to true, "message" to "Permission dialog opened", "isGranted" to false)
         } else {
             mapOf("success" to true, "message" to "Already granted", "isGranted" to true)
+        }
+    }
+    fun checkNotificationPermission(context: Context): Map<String, Any?> {
+        val isGranted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
+        } else {
+            true
+        }
+        return mapOf("success" to true, "isGranted" to isGranted)
+    }
+
+    fun requestNotificationPermission(activity: Activity): Map<String, Any?> {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            val permission = Manifest.permission.POST_NOTIFICATIONS
+            if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(activity, arrayOf(permission), 101)
+                mapOf("success" to true, "message" to "Permission dialog opened", "isGranted" to false)
+            }else {
+                mapOf("success" to true, "message" to "Already granted", "isGranted" to true)
+            }
+        } else {
+            mapOf("success" to true, "message" to "No need for Permission", "isGranted" to true)
         }
     }
     fun record(context: Context, fileName: String, format: Int, encoder: Int, bitRate:Int, sampleRate:Int, channels:Int): Map<String, Any?> {

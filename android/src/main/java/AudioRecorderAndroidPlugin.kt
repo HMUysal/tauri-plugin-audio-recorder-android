@@ -49,7 +49,33 @@ class AudioRecorderAndroidPlugin(private val activity: Activity): Plugin(activit
         }
         invoke.resolve(ret)
     }
+    @Command
+    fun checkNotificationPermission(invoke: Invoke) {
+        val result = implementation.checkNotificationPermission(activity)
+        val ret = JSObject()
+        result.forEach { (key, value) ->
+            when(value) {
+                is Boolean -> ret.put(key, value)
+                is Int -> ret.put(key, value)
+                else -> ret.put(key, value.toString())
+            }
+        }
+        invoke.resolve(ret)
+    }
 
+    @Command
+    fun requestNotificationPermission(invoke: Invoke) {
+        val result = implementation.requestNotificationPermission(activity)
+        val ret = JSObject()
+        result.forEach { (key, value) ->
+            when(value) {
+                is Boolean -> ret.put(key, value)
+                is Int -> ret.put(key, value)
+                else -> ret.put(key, value.toString())
+            }
+        }
+        invoke.resolve(ret)
+    }
     @Command
     fun record(invoke: Invoke) {
         try {
