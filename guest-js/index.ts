@@ -53,8 +53,8 @@ export interface RecordRequest {
 }
 
 export interface PermissionResponse {
-  recordPermissionState: "granted";
-  notificationPermissionState: "granted";
+  recordPermissionState: "granted" | "prompt" | "denied";
+  notificationPermissionState: "granted" | "prompt" | "denied";
 }
 
 /**
