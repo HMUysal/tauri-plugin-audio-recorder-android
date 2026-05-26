@@ -1,6 +1,6 @@
 {
   "name": "tauri-plugin-audio-recorder-android-api",
-  "version": "0.1.",
+  "version": "0.1.4",
   "author": "Mehmet Uysal",
   "license": "MIT",
   "description": "High-performance background audio recording plugin for Tauri 2.0 Android apps with Foreground Service and real-time amplitude support.",
