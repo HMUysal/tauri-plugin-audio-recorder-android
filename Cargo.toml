@@ -1,6 +1,6 @@
 [package]
 name = "tauri-plugin-audio-recorder-android"
-version = "0.1.5"
+version = "0.1.6"
 authors = [ "Mehmet Uysal" ]
 description = "High-performance background audio recording plugin for Tauri 2.0 Android apps with Foreground Service and real-time amplitude support."
 homepage = "https://github.com/HMUysal/tauri-plugin-audio-recorder-android"

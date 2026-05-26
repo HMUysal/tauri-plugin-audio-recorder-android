@@ -218,7 +218,7 @@ class AudioRecordService : Service() {
             .setSound(null)
             .setVibrate(null)
             .setContentIntent(pendingIntent)
-            .setPriority(NotificationCompat.PRIORITY_MIN)
+            .setPriority(NotificationCompat.PRIORITY_HIGH)
             .build()
     }
 
