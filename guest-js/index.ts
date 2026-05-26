@@ -55,6 +55,7 @@ export interface RecordRequest {
 export interface PermissionResponse {
   recordPermissionState: "granted" | "prompt" | "denied";
   notificationPermissionState: "granted" | "prompt" | "denied";
+  batteryOptimizationPermissionState: "granted" | "prompt" | "denied";
 }
 
 /**

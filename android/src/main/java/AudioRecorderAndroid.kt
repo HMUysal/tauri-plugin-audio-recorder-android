@@ -3,16 +3,9 @@ package com.plugin.audio_recorder_android
 import android.content.Context
 import android.content.Intent
 import android.os.Build
-import androidx.core.app.NotificationManagerCompat
 
 class AudioRecorderAndroid {
-
-    fun havePermissions(context: Context): Boolean {
-        val notificationManager = NotificationManagerCompat.from(context)
-        return notificationManager.areNotificationsEnabled()
-    }
-
-    fun record(context: Context, fileName: String, format: Int, encoder: Int, bitRate:Int, sampleRate:Int, channels:Int): Map<String, Any?> {
+    fun record(context: Context, fileName: String, format: Int, encoder: Int, bitRate: Int, sampleRate: Int, channels: Int): Map<String, Any?> {
         val intent = Intent(context, AudioRecordService::class.java).apply {
             action = "START"
             putExtra("fileName", fileName)

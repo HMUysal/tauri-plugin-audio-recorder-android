@@ -18,6 +18,7 @@ impl<R: Runtime> AudioRecorderAndroid<R> {
         Ok(PermissionResponse {
             record_permission_state: "Not Available".to_string(),
             notification_permission_state: "Not Available".to_string(),
+            battery_optimization_permission_state: "Not Available".to_string(),
         })
     }
 
@@ -25,6 +26,7 @@ impl<R: Runtime> AudioRecorderAndroid<R> {
         Ok(PermissionResponse {
             record_permission_state: "Not Available".to_string(),
             notification_permission_state: "Not Available".to_string(),
+            battery_optimization_permission_state: "Not Available".to_string(),
         })
     }
 

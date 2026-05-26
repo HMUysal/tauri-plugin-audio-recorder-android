@@ -37,4 +37,5 @@ pub struct GenericResponse {
 pub struct PermissionResponse {
     pub record_permission_state: String,
     pub notification_permission_state: String,
+    pub battery_optimization_permission_state: String,
 }
