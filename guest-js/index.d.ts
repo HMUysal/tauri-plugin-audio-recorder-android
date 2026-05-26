@@ -46,6 +46,11 @@ export interface RecordRequest {
   channels?: number;
 }
 
+export interface PermissionResponse {
+  recordPermissionState: "granted" | "prompt" | "denied";
+  notificationPermissionState: "granted" | "prompt" | "denied";
+}
+
 export interface GenericResponse {
   success: boolean;
   message?: string;

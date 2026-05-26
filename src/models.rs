@@ -15,7 +15,6 @@ pub struct RecordRequest {
 #[serde(rename_all = "camelCase")]
 pub struct EmptyRequest {}
 
-
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RecorderStatusResponse {
@@ -36,7 +35,6 @@ pub struct GenericResponse {
 #[derive(Debug, Clone, Default, Deserialize, Serialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PermissionResponse {
-    pub success: bool,
-    pub message: Option<String>,
-    pub is_granted: Option<bool>,
+    pub record_permission_state: String,
+    pub notification_permission_state: String,
 }

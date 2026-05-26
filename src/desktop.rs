@@ -14,37 +14,20 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct AudioRecorderAndroid<R: Runtime>(AppHandle<R>);
 
 impl<R: Runtime> AudioRecorderAndroid<R> {
-    pub fn check_permission(&self) -> crate::Result<PermissionResponse> {
+    pub fn check_permissions(&self) -> crate::Result<PermissionResponse> {
         Ok(PermissionResponse {
-            success: true,
-            is_granted: Some(false), // Masaüstünde varsayılan olarak izinsiz sayıyoruz
-            message: Some("Desktop is not supported for this plugin".to_string()),
+            record_permission_state: "Not Available".to_string(),
+            notification_permission_state: "Not Available".to_string(),
         })
     }
 
-    pub fn request_permission(&self) -> crate::Result<PermissionResponse> {
+    pub fn request_permissions(&self) -> crate::Result<PermissionResponse> {
         Ok(PermissionResponse {
-            success: false,
-            is_granted: Some(false),
-            message: Some("Permission requests are only available on Android".to_string()),
+            record_permission_state: "Not Available".to_string(),
+            notification_permission_state: "Not Available".to_string(),
         })
     }
 
-    pub fn check_notification_permission(&self) -> crate::Result<PermissionResponse> {
-        Ok(PermissionResponse {
-            success: true,
-            is_granted: Some(false), // Masaüstünde varsayılan olarak izinsiz sayıyoruz
-            message: Some("Desktop is not supported for this plugin".to_string()),
-        })
-    }
-
-    pub fn request_notification_permission(&self) -> crate::Result<PermissionResponse> {
-        Ok(PermissionResponse {
-            success: false,
-            is_granted: Some(false),
-            message: Some("Permission requests are only available on Android".to_string()),
-        })
-    }
     pub fn record(&self, _payload: RecordRequest) -> crate::Result<GenericResponse> {
         Ok(GenericResponse {
             success: false,

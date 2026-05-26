@@ -36,10 +36,8 @@ impl<R: Runtime, T: Manager<R>> crate::AudioRecorderAndroidExt<R> for T {
 pub fn init<R: Runtime>() -> TauriPlugin<R> {
     Builder::new("audio-recorder-android")
         .invoke_handler(tauri::generate_handler![
-            commands::check_permission,
-            commands::request_permission,
-            commands::check_notification_permission,
-            commands::request_notification_permission,
+            commands::check_permissions,
+            commands::request_permissions,
             commands::record,
             commands::stop,
             commands::pause,

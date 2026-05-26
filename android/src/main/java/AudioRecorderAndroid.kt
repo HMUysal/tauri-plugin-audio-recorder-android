@@ -1,55 +1,17 @@
 package com.plugin.audio_recorder_android
 
-import android.Manifest
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.os.Build
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
+import androidx.core.app.NotificationManagerCompat
 
-private const val PERMISSION_REQUEST_CODE = 1001
-const val NOTIFICATION_PERMISSION_CODE = 101
 class AudioRecorderAndroid {
 
-    fun checkPermission(context: Context): Map<String, Any?> {
-        val permission = Manifest.permission.RECORD_AUDIO
-        val isGranted = ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
-        return mapOf("success" to true, "isGranted" to isGranted)
+    fun havePermissions(context: Context): Boolean {
+        val notificationManager = NotificationManagerCompat.from(context)
+        return notificationManager.areNotificationsEnabled()
     }
 
-    fun requestPermission(activity: Activity): Map<String, Any?> {
-        val permission = Manifest.permission.RECORD_AUDIO
-        return if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(activity, arrayOf(permission), PERMISSION_REQUEST_CODE)
-            mapOf("success" to true, "message" to "Permission dialog opened", "isGranted" to false)
-        } else {
-            mapOf("success" to true, "message" to "Already granted", "isGranted" to true)
-        }
-    }
-    fun checkNotificationPermission(context: Context): Map<String, Any?> {
-        val isGranted = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) == PackageManager.PERMISSION_GRANTED
-        } else {
-            true
-        }
-        return mapOf("success" to true, "isGranted" to isGranted)
-    }
-
-    fun requestNotificationPermission(activity: Activity): Map<String, Any?> {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val permission = Manifest.permission.POST_NOTIFICATIONS
-            if (ContextCompat.checkSelfPermission(activity, permission) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(activity, arrayOf(permission), 101)
-                mapOf("success" to true, "message" to "Permission dialog opened", "isGranted" to false)
-            }else {
-                mapOf("success" to true, "message" to "Already granted", "isGranted" to true)
-            }
-        } else {
-            mapOf("success" to true, "message" to "No need for Permission", "isGranted" to true)
-        }
-    }
     fun record(context: Context, fileName: String, format: Int, encoder: Int, bitRate:Int, sampleRate:Int, channels:Int): Map<String, Any?> {
         val intent = Intent(context, AudioRecordService::class.java).apply {
             action = "START"

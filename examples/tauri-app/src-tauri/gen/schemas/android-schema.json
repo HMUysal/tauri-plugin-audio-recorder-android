@@ -213,10 +213,10 @@
           "markdownDescription": "Enables the record command."
         },
         {
-          "description": "Enables the request_permission command.",
+          "description": "Enables the request_permissions command.",
           "type": "string",
           "const": "audio-recorder-android:allow-request-permission",
-          "markdownDescription": "Enables the request_permission command."
+          "markdownDescription": "Enables the request_permissions command."
         },
         {
           "description": "Enables the resume command.",
@@ -261,10 +261,10 @@
           "markdownDescription": "Denies the record command."
         },
         {
-          "description": "Denies the request_permission command.",
+          "description": "Denies the request_permissions command.",
           "type": "string",
           "const": "audio-recorder-android:deny-request-permission",
-          "markdownDescription": "Denies the request_permission command."
+          "markdownDescription": "Denies the request_permissions command."
         },
         {
           "description": "Denies the resume command.",

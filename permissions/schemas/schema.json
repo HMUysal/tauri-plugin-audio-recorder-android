@@ -361,16 +361,16 @@
           "markdownDescription": "Denies the record command."
         },
         {
-          "description": "Enables the request_permission command.",
+          "description": "Enables the request_permissions command.",
           "type": "string",
           "const": "allow-request-permission",
-          "markdownDescription": "Enables the request_permission command."
+          "markdownDescription": "Enables the request_permissions command."
         },
         {
-          "description": "Denies the request_permission command.",
+          "description": "Denies the request_permissions command.",
           "type": "string",
           "const": "deny-request-permission",
-          "markdownDescription": "Denies the request_permission command."
+          "markdownDescription": "Denies the request_permissions command."
         },
         {
           "description": "Enables the resume command.",

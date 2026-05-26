@@ -1,9 +1,12 @@
 package com.plugin.audio_recorder_android
 
+import android.Manifest
 import android.app.Activity
 import android.media.MediaRecorder
+import android.os.Build
 import app.tauri.annotation.Command
 import app.tauri.annotation.InvokeArg
+import app.tauri.annotation.Permission
 import app.tauri.annotation.TauriPlugin
 import app.tauri.plugin.JSObject
 import app.tauri.plugin.Plugin
@@ -18,63 +21,40 @@ class RecordArgs {
     var sampleRate: Int? = null
     var channels: Int? = null
 }
-@TauriPlugin
+const val RECORD_AUDIO = "recordPermissionState"
+const val POST_NOTIFICATIONS = "notificationPermissionState"
+
+@TauriPlugin(
+    permissions = [
+        Permission(strings = [Manifest.permission.RECORD_AUDIO], alias = RECORD_AUDIO),
+        Permission(strings = [Manifest.permission.POST_NOTIFICATIONS], alias = POST_NOTIFICATIONS)
+    ]
+)
 class AudioRecorderAndroidPlugin(private val activity: Activity): Plugin(activity) {
     private val implementation = AudioRecorderAndroid()
 
     @Command
-    fun checkPermission(invoke: Invoke) {
-        val result = implementation.checkPermission(activity)
-        val ret = JSObject()
-        result.forEach { (key, value) ->
-            when(value) {
-                is Boolean -> ret.put(key, value)
-                is Int -> ret.put(key, value)
-                else -> ret.put(key, value.toString())
-            }
+    override fun checkPermissions(invoke: Invoke) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            val permissionsResultJSON = JSObject()
+            permissionsResultJSON.put("recordPermissionState", true)
+            permissionsResultJSON.put("notificationPermissionState", true)
+            invoke.resolve(permissionsResultJSON)
+        } else {
+            super.checkPermissions(invoke)
         }
-        invoke.resolve(ret)
     }
 
     @Command
-    fun requestPermission(invoke: Invoke) {
-        val result = implementation.requestPermission(activity)
-        val ret = JSObject()
-        result.forEach { (key, value) ->
-            when(value) {
-                is Boolean -> ret.put(key, value)
-                is Int -> ret.put(key, value)
-                else -> ret.put(key, value.toString())
-            }
+    override fun requestPermissions(invoke: Invoke) {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
+            val permissionsResultJSON = JSObject()
+            permissionsResultJSON.put("recordPermissionState", true)
+            permissionsResultJSON.put("notificationPermissionState", true)
+            invoke.resolve(permissionsResultJSON)
+        } else {
+            super.requestPermissions(invoke)
         }
-        invoke.resolve(ret)
-    }
-    @Command
-    fun checkNotificationPermission(invoke: Invoke) {
-        val result = implementation.checkNotificationPermission(activity)
-        val ret = JSObject()
-        result.forEach { (key, value) ->
-            when(value) {
-                is Boolean -> ret.put(key, value)
-                is Int -> ret.put(key, value)
-                else -> ret.put(key, value.toString())
-            }
-        }
-        invoke.resolve(ret)
-    }
-
-    @Command
-    fun requestNotificationPermission(invoke: Invoke) {
-        val result = implementation.requestNotificationPermission(activity)
-        val ret = JSObject()
-        result.forEach { (key, value) ->
-            when(value) {
-                is Boolean -> ret.put(key, value)
-                is Int -> ret.put(key, value)
-                else -> ret.put(key, value.toString())
-            }
-        }
-        invoke.resolve(ret)
     }
     @Command
     fun record(invoke: Invoke) {

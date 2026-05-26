@@ -28,29 +28,18 @@ pub fn init<R: Runtime, C: DeserializeOwned>(
 pub struct AudioRecorderAndroid<R: Runtime>(PluginHandle<R>);
 
 impl<R: Runtime> AudioRecorderAndroid<R> {
-    pub fn check_permission(&self) -> crate::Result<PermissionResponse> {
+    pub fn check_permissions(&self) -> crate::Result<PermissionResponse> {
         self.0
-            .run_mobile_plugin("checkPermission", EmptyRequest {})
+            .run_mobile_plugin("checkPermissions", EmptyRequest {})
             .map_err(Into::into)
     }
 
-    pub fn request_permission(&self) -> crate::Result<PermissionResponse> {
+    pub fn request_permissions(&self) -> crate::Result<PermissionResponse> {
         self.0
-            .run_mobile_plugin("requestPermission", EmptyRequest {})
+            .run_mobile_plugin("requestPermissions", EmptyRequest {})
             .map_err(Into::into)
     }
 
-    pub fn check_notification_permission(&self) -> crate::Result<PermissionResponse> {
-        self.0
-            .run_mobile_plugin("checkNotificationPermission", EmptyRequest {})
-            .map_err(Into::into)
-    }
-
-    pub fn request_notification_permission(&self) -> crate::Result<PermissionResponse> {
-        self.0
-            .run_mobile_plugin("requestNotificationPermission", EmptyRequest {})
-            .map_err(Into::into)
-    }
     pub fn record(&self, payload: RecordRequest) -> crate::Result<GenericResponse> {
         self.0
             .run_mobile_plugin("record", payload)

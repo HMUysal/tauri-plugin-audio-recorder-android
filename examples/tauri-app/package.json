@@ -11,12 +11,12 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^2.0.0",
-    "tauri-plugin-audio-recorder-android-api": "file:../../"
+    "tauri-plugin-audio-recorder-android-api": "file:../.."
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "@tauri-apps/cli": "^2.0.0",
     "svelte": "^5.0.0",
-    "vite": "^8.0.0",
-    "@tauri-apps/cli": "^2.0.0"
+    "vite": "^8.0.0"
   }
 }

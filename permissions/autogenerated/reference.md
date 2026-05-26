@@ -159,7 +159,7 @@ Denies the record command.
 </td>
 <td>
 
-Enables the request_permission command.
+Enables the request_permissions command.
 
 </td>
 </tr>
@@ -172,7 +172,7 @@ Enables the request_permission command.
 </td>
 <td>
 
-Denies the request_permission command.
+Denies the request_permissions command.
 
 </td>
 </tr>

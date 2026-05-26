@@ -52,6 +52,11 @@ export interface RecordRequest {
   channels?: number;
 }
 
+export interface PermissionResponse {
+  recordPermissionState: "granted";
+  notificationPermissionState: "granted";
+}
+
 /**
  * Standard response structure for permissions and simple operations.
  */
@@ -86,9 +91,9 @@ export interface RecorderStatusResponse {
  * Checks if the RECORD_AUDIO permission is granted on the Android device.
  * @returns A promise resolving to the permission status.
  */
-export async function checkPermission(): Promise<GenericResponse> {
-  return await invoke<GenericResponse>(
-    "plugin:audio-recorder-android|check_permission",
+export async function checkPermissions(): Promise<PermissionResponse> {
+  return await invoke<PermissionResponse>(
+    "plugin:audio-recorder-android|check_permissions",
   );
 }
 
@@ -96,28 +101,9 @@ export async function checkPermission(): Promise<GenericResponse> {
  * Requests the RECORD_AUDIO permission from the user.
  * @returns A promise resolving to the result of the permission request.
  */
-export async function requestPermission(): Promise<GenericResponse> {
-  return await invoke<GenericResponse>(
-    "plugin:audio-recorder-android|request_permission",
-  );
-}
-/**
- * Checks if the RECORD_AUDIO permission is granted on the Android device.
- * @returns A promise resolving to the permission status.
- */
-export async function checkNotificationPermission(): Promise<GenericResponse> {
-  return await invoke<GenericResponse>(
-    "plugin:audio-recorder-android|check_notification_permission",
-  );
-}
-
-/**
- * Requests the RECORD_AUDIO permission from the user.
- * @returns A promise resolving to the result of the permission request.
- */
-export async function requestNotificationPermission(): Promise<GenericResponse> {
-  return await invoke<GenericResponse>(
-    "plugin:audio-recorder-android|request_notification_permission",
+export async function requestPermissions(): Promise<PermissionResponse> {
+  return await invoke<PermissionResponse>(
+    "plugin:audio-recorder-android|request_permissions",
   );
 }
 /**
